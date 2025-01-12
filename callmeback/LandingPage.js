@@ -104,9 +104,9 @@ document
 
     // Skips the input tag with the appropriate name
     for (const [key, value] of formData.entries()) {
-      if (key === "b_cd3e3380477cf476388436d0f_6ac762a776") {
-        continue;
-      }
+      // if (key === "b_cd3e3380477cf476388436d0f_6ac762a776") {
+      //   continue;
+      // }
 
       // Checks if all fields have a value which are not white spaces
       if (!value.trim()) {
@@ -115,7 +115,7 @@ document
       }
     }
 
-    // If all fields are full post data and display a message
+    // If all fields are full, post data and display a message
     if (allFieldsFilled) {
       // Calls a function to add more data
       formData = await addData(formData);
