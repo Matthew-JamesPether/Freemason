@@ -12,7 +12,7 @@
 
     <!-- Link tags for the css style sheet, icon and font-awesome-->
     <link rel="stylesheet" href="Styles/LandingPage.css" type="text/css" />
-    <link rel="icon" href="./Images/masonic_icon.webp" type="image/x-icon" />
+    <link rel="icon" href="Images/masonic_icon.webp" type="image/x-icon" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
@@ -346,5 +346,36 @@
 
     <!-- Calls the javascript file -->
     <script type="text/javascript" src="LandingPage.js"></script>
+    <script>
+      document
+        .getElementById("contactForm")
+        .addEventListener("submit", function () {
+
+          // Show the sliding message
+          const slideMessage = document.getElementById("slideMessage");
+          slideMessage.classList.add("active");
+        });
+      // // Function that edits the form data and adds the IP address and Location
+      // const addData = async (formData) => {
+      //   // Fetches the users IP address
+      //   const ip = await fetch("https://api.ipify.org?format=json")
+      //     .then((response) => response.json())
+      //     .then((data) => {
+      //       formData.set("IPADDRESS", `${data.ip}`);
+      //       return data.ip;
+      //     })
+      //     .catch((error) => console.error("Fetching IP:", error));
+
+      //   // Fetches the users location using their IP address
+      //   await fetch(`http://ip-api.com/json/${ip}?fields=country`)
+      //     .then((response) => response.json())
+      //     .then((data) => {
+      //       formData.set("LOCATION", `${data.country}`);
+      //     })
+      //     .catch((error) => console.error("Error:", error));
+
+      //   return formData;
+      // };
+    </script>
   </body>
 </html>
