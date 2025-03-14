@@ -63,7 +63,7 @@ objEmail.Configuration.Fields.Item("http://schemas.microsoft.com/cdo/configurati
 objEmail.Configuration.Fields.Update
 
 objEmail.From = "website@westerford.capetown"
-objEmail.To = "sean@twhconsult.co.za, Za.marco.petronio@gmail.com"
+objEmail.To = "sean@twhconsult.co.za, za.marco.petronio@gmail.com"
 objEmail.Subject = "New Applicant About Freemasonry"
 objEmail.TextBody = emailBody
 
