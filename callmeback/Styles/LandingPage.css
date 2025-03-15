@@ -19,6 +19,11 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
+  background-size: 30%;
+  background-position: center;
+  background-repeat: no-repeat;
+  -webkit-background-attachment: fixed; /* Webkit support for fixed background */
+  -moz-background-attachment: fixed; /* Mozilla support for fixed background */
 }
 
 /* Styles the header component*/
@@ -38,6 +43,7 @@ form {
   column-gap: 150px;
   grid-template-rows: 50% 50%;
   grid-template-columns: 50% 1fr;
+  -ms-grid-columns: 50% 1fr; /* IE support for grid columns */
 }
 
 /* Styles the container inputs component*/
@@ -79,7 +85,11 @@ p {
   border-radius: 4px;
   box-sizing: border-box;
   font-size: 17px;
+  -webkit-appearance: none; /* Ensures uniform input appearance in Webkit browsers */
+  -moz-appearance: none; /* Ensures uniform input appearance in Mozilla browsers */
+  appearance: none; /* For all modern browsers */
 }
+
 /* Styles the input container component*/
 .input-container {
   display: flex;
@@ -119,6 +129,9 @@ p {
   border: 0px;
   color: white;
   font-size: 1rem;
+  -ms-transform: scale(1); /* IE support for scale */
+  -webkit-transition: background-color 0.3s ease; /* Webkit transition */
+  transition: background-color 0.3s ease; /* All modern browsers */
 }
 
 /* Add a hover effect over the submit button */
@@ -139,6 +152,8 @@ p {
   font-size: 17px;
   border-radius: 5px;
   z-index: 1000;
+  -webkit-transition: top 0.2s ease-out; /* Webkit transition */
+  transition: top 0.2s ease-out; /* All modern browsers */
 }
 
 /* Styles the textarea components*/
@@ -188,7 +203,7 @@ span {
   }
 }
 
-/* Adds a effect to the sliding message component */
+/* Adds an effect to the sliding message component */
 .slide-message.active {
   animation: slideDownBounce 0.2s ease-out forwards;
 }
