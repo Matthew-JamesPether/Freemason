@@ -82,6 +82,6 @@ const checkConditions = () => {
 };
 
 // Clear sessionStorage on refresh
-window.addEventListener("beforeunload", () => {
-  sessionStorage.clear(); // Clear session storage when the page is refreshed
-});
+// window.addEventListener("beforeunload", () => {
+//   sessionStorage.clear(); // Clear session storage when the page is refreshed
+// });
