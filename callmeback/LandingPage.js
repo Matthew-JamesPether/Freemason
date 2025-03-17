@@ -11,6 +11,16 @@ const checkboxes = {
   checkbox2: false,
   checkbox3: false,
 };
+// On page load, check sessionStorage for saved state
+window.addEventListener("load", () => {
+  if (sessionStorage.getItem("answers") && sessionStorage.getItem("checkboxes")) {
+    answers = JSON.parse(sessionStorage.getItem("answers"));
+    checkboxes = JSON.parse(sessionStorage.getItem("checkboxes"));
+
+    // Re-render button visibility based on saved state
+    checkConditions();
+  }
+});
 
 // Displays a hyphen at the appropriate points for the users contact number
 document
@@ -36,6 +46,8 @@ document
 // Function to handle radio button change
 const handleChange = (question, value) => {
   answers[question] = value;
+
+  sessionStorage.setItem("answers", JSON.stringify(answers));
   checkConditions();
 };
 
@@ -44,6 +56,8 @@ const handleCheckboxChange = () => {
   checkboxes.checkbox1 = document.getElementById("checkbox1").checked;
   checkboxes.checkbox2 = document.getElementById("checkbox2").checked;
   checkboxes.checkbox3 = document.getElementById("checkbox3").checked;
+
+  sessionStorage.setItem("checkboxes", JSON.stringify(checkboxes));
   checkConditions();
 };
 
