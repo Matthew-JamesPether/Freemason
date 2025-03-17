@@ -11,11 +11,34 @@ const checkboxes = {
   checkbox2: false,
   checkbox3: false,
 };
+
 // On page load, check sessionStorage for saved state
 window.addEventListener("load", () => {
-  if (sessionStorage.getItem("answers") && sessionStorage.getItem("checkboxes")) {
+  if (
+    sessionStorage.getItem("answers") &&
+    sessionStorage.getItem("checkboxes")
+  ) {
     answers = JSON.parse(sessionStorage.getItem("answers"));
     checkboxes = JSON.parse(sessionStorage.getItem("checkboxes"));
+
+    // Loop through answers and set radio button selection
+    Object.keys(answers).forEach((question) => {
+      let selectedValue = answers[question]; // "yes" or "no"
+      let radioButton = document.querySelector(
+        `input[name="${question}"][value="${selectedValue}"]`
+      );
+      if (radioButton) {
+        radioButton.checked = true;
+      }
+    });
+
+    // Loop through checkboxes and set their checked state
+    checkboxes.forEach((isChecked, index) => {
+      let checkboxElement = document.getElementById(`checkbox${index + 1}`);
+      if (checkboxElement) {
+        checkboxElement.checked = isChecked;
+      }
+    });
 
     // Re-render button visibility based on saved state
     checkConditions();
