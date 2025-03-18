@@ -12,39 +12,6 @@ const checkboxes = {
   checkbox3: false,
 };
 
-// On page load, check sessionStorage for saved state
-window.addEventListener("load", () => {
-  if (
-    sessionStorage.getItem("answers") &&
-    sessionStorage.getItem("checkboxes")
-  ) {
-    answers = JSON.parse(sessionStorage.getItem("answers"));
-    checkboxes = JSON.parse(sessionStorage.getItem("checkboxes"));
-
-    // Loop through answers and set radio button selection
-    Object.keys(answers).forEach((question) => {
-      let selectedValue = answers[question]; // "yes" or "no"
-      let radioButton = document.querySelector(
-        `input[name="${question}"][value="${selectedValue}"]`
-      );
-      if (radioButton) {
-        radioButton.checked = true;
-      }
-    });
-
-    // Loop through checkboxes and set their checked state
-    checkboxes.forEach((isChecked, index) => {
-      let checkboxElement = document.getElementById(`checkbox${index + 1}`);
-      if (checkboxElement) {
-        checkboxElement.checked = isChecked;
-      }
-    });
-
-    // Re-render button visibility based on saved state
-    checkConditions();
-  }
-});
-
 // Displays a hyphen at the appropriate points for the users contact number
 document
   .getElementById("mce-PHONE")
@@ -68,8 +35,8 @@ document
 
 // Function to handle radio button change
 const handleChange = (question, value) => {
-  answers[question] = value;
 
+  answers[question] = value;
   sessionStorage.setItem("answers", JSON.stringify(answers));
   checkConditions();
 };
@@ -106,9 +73,82 @@ const checkConditions = () => {
 
 // Restore state when the page loads
 document.addEventListener("DOMContentLoaded", function () {
+  // if (sessionStorage.getItem("answers") !== null) {
+  //   answers = JSON.parse(sessionStorage.getItem("answers"));
+
+  //   // Loop through answers and set radio button selection
+  //   Object.keys(answers).forEach((question) => {
+  //     let selectedValue = answers[question]; // "yes" or "no"
+  //     let radioButton = document.querySelector(
+  //       `input[name="${question}"][value="${selectedValue}"]`
+  //     );
+  //     if (radioButton) {
+  //       radioButton.checked = true;
+  //     }
+  //   });
+  // }
+
+  // if (sessionStorage.getItem("checkboxes") !== null) {
+  //   checkboxes = JSON.parse(sessionStorage.getItem("checkboxes"));
+
+  //   // Loop through checkboxes and set their checked state
+  //   checkboxes.forEach((isChecked, index) => {
+  //     let checkboxElement = document.getElementById(`checkbox${index + 1}`);
+  //     if (checkboxElement) {
+  //       checkboxElement.checked = isChecked;
+  //     }
+  //   });
+  // }
+
   if (sessionStorage.getItem("submitVisible") === "true") {
     document.getElementById("submitButton").style.display = "block";
+    answers = JSON.parse(sessionStorage.getItem("answers"));
+    checkboxes = JSON.parse(sessionStorage.getItem("checkboxes"));
   } else {
     document.getElementById("submitButton").style.display = "none";
   }
 });
+
+// On page load, check sessionStorage for saved state
+// document.addEventListener("DOMContentLoaded", function () {
+//   if (answers != null || checkboxes != null) {
+//     answers = JSON.parse(sessionStorage.getItem("answers"));
+//     checkboxes = JSON.parse(sessionStorage.getItem("checkboxes"));
+
+//     // Loop through answers and set radio button selection
+//     Object.keys(answers).forEach((question) => {
+//       let selectedValue = answers[question]; // "yes" or "no"
+//       let radioButton = document.querySelector(
+//         `input[name="${question}"][value="${selectedValue}"]`
+//       );
+//       if (radioButton) {
+//         radioButton.checked = true;
+//       }
+//     });
+
+//     // Loop through checkboxes and set their checked state
+//     checkboxes.forEach((isChecked, index) => {
+//       let checkboxElement = document.getElementById(`checkbox${index + 1}`);
+//       if (checkboxElement) {
+//         checkboxElement.checked = isChecked;
+//       }
+//     });
+
+//   } else {
+//     answers = {
+//       question1: "no",
+//       question2: "no",
+//       question3: "no",
+//       question4: "no",
+//       question5: "no",
+//     };
+//     checkboxes = {
+//       checkbox1: false,
+//       checkbox2: false,
+//       checkbox3: false,
+//     };
+//   }
+
+//   // Re-render button visibility based on saved state
+//   checkConditions();
+// });
