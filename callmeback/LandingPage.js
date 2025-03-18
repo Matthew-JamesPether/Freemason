@@ -26,7 +26,7 @@ if (sessionStorage.getItem("checkboxes") !== null) {
   };
 }
 
-checkConditions();
+//checkConditions();
 }
 
 // resets the radio buttons to match what is stored
