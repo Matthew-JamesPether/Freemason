@@ -4,17 +4,7 @@ let checkboxes = null;
 
 if (sessionStorage.getItem("answers") !== null) {
   answers = JSON.parse(sessionStorage.getItem("answers"));
-
-  // Loop through answers and set radio button selection
-  Object.keys(answers).forEach((question) => {
-    let selectedValue = answers[question]; // "yes" or "no"
-    let radioButton = document.querySelector(
-      `input[name="${question}"][value="${selectedValue}"]`
-    );
-    if (radioButton) {
-      radioButton.checked = true;
-    }
-  });
+  resetRadios();
 } else {
   answers = {
     question1: "no",
@@ -26,13 +16,7 @@ if (sessionStorage.getItem("answers") !== null) {
 }
 if (sessionStorage.getItem("checkboxes") !== null) {
   checkboxes = JSON.parse(sessionStorage.getItem("checkboxes"));
-
-  checkboxes.forEach((isChecked, index) => {
-    let checkboxElement = document.getElementById(`checkbox${index + 1}`);
-    if (checkboxElement) {
-      checkboxElement.checked = isChecked;
-    }
-  });
+  resetChecks();
 } else {
   checkboxes = {
     checkbox1: false,
@@ -61,6 +45,30 @@ document
 
     event.target.value = formattedInput;
   });
+
+// resets the radio buttons to match what is stored
+const resetRadios = () => {
+  // Loop through answers and set radio button selection
+  Object.keys(answers).forEach((question) => {
+    let selectedValue = answers[question]; // "yes" or "no"
+    let radioButton = document.querySelector(
+      `input[name="${question}"][value="${selectedValue}"]`
+    );
+    if (radioButton) {
+      radioButton.checked = true;
+    }
+  });
+};
+
+// resets the check boxes to match what is stored
+const resetChecks = () => {
+  checkboxes.forEach((isChecked, index) => {
+    let checkboxElement = document.getElementById(`checkbox${index + 1}`);
+    if (checkboxElement) {
+      checkboxElement.checked = isChecked;
+    }
+  });
+};
 
 // Function to handle radio button change
 const handleChange = (question, value) => {
@@ -103,53 +111,7 @@ const checkConditions = () => {
 document.addEventListener("DOMContentLoaded", function () {
   if (sessionStorage.getItem("submitVisible") === "true") {
     document.getElementById("submitButton").style.display = "block";
-    answers = JSON.parse(sessionStorage.getItem("answers"));
-    checkboxes = JSON.parse(sessionStorage.getItem("checkboxes"));
   } else {
     document.getElementById("submitButton").style.display = "none";
   }
 });
-
-// On page load, check sessionStorage for saved state
-// document.addEventListener("DOMContentLoaded", function () {
-//   if (answers != null || checkboxes != null) {
-//     answers = JSON.parse(sessionStorage.getItem("answers"));
-//     checkboxes = JSON.parse(sessionStorage.getItem("checkboxes"));
-
-//     // Loop through answers and set radio button selection
-//     Object.keys(answers).forEach((question) => {
-//       let selectedValue = answers[question]; // "yes" or "no"
-//       let radioButton = document.querySelector(
-//         `input[name="${question}"][value="${selectedValue}"]`
-//       );
-//       if (radioButton) {
-//         radioButton.checked = true;
-//       }
-//     });
-
-//     // Loop through checkboxes and set their checked state
-//     checkboxes.forEach((isChecked, index) => {
-//       let checkboxElement = document.getElementById(`checkbox${index + 1}`);
-//       if (checkboxElement) {
-//         checkboxElement.checked = isChecked;
-//       }
-//     });
-
-//   } else {
-//     answers = {
-//       question1: "no",
-//       question2: "no",
-//       question3: "no",
-//       question4: "no",
-//       question5: "no",
-//     };
-//     checkboxes = {
-//       checkbox1: false,
-//       checkbox2: false,
-//       checkbox3: false,
-//     };
-//   }
-
-//   // Re-render button visibility based on saved state
-//   checkConditions();
-// });
