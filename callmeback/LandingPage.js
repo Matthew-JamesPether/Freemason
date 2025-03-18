@@ -39,6 +39,8 @@ const resetRadios = () => {
       radioButton.checked = true;
     }
   });
+
+  checkConditions();
 };
 
 // resets the check boxes to match what is stored
@@ -49,6 +51,8 @@ const resetChecks = () => {
       checkboxElement.checked = isChecked;
     }
   });
+
+  checkConditions();
 };
 
 // Function to handle radio button change
@@ -115,7 +119,6 @@ document
 // Restore state when the page loads
 document.addEventListener("DOMContentLoaded", function () {
   setRadioChecks();
-  checkConditions();
   // if (sessionStorage.getItem("submitVisible") === "true") {
   //   document.getElementById("submitButton").style.display = "block";
   // } else {
