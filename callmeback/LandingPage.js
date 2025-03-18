@@ -42,10 +42,10 @@ const resetRadios = () => {
     }
   });
 
-  Object.keys(answers).forEach((question) => {
-    let selectedValue = answers[question]; // "yes" or "no"
-    handleChange(question, selectedValue);
-  });
+//  Object.keys(answers).forEach((question) => {
+    //let selectedValue = answers[question]; // "yes" or "no"
+   // handleChange(question, selectedValue);
+  //});
 };
 
 // resets the check boxes to match what is stored
@@ -56,7 +56,7 @@ const resetChecks = () => {
       checkboxElement.checked = isChecked;
     }
   });
-  handleCheckboxChange();
+ // handleCheckboxChange();
 };
 
 // Function to handle radio button change
