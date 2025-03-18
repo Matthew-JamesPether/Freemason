@@ -98,7 +98,6 @@ const checkConditions = () => {
 
 //checks if there is data in session storage
 setRadioChecks();
-checkConditions();
 
 // Displays a hyphen at the appropriate points for the users contact number
 document
