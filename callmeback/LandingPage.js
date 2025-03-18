@@ -1,6 +1,16 @@
 // Declaring variables
-let answers = null;
-let checkboxes = null;
+ let answers = {
+       question1: "no",
+       question2: "no",
+       question3: "no",
+       question4: "no",
+       question5: "no",
+     };
+  let checkboxes = {
+       checkbox1: false,
+       checkbox2: false,
+       checkbox3: false,
+     };
 
 // Displays a hyphen at the appropriate points for the users contact number
 document
