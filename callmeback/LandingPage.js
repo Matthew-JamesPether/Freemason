@@ -2,6 +2,7 @@
 let answers = null;
 let checkboxes = null;
 
+const setRadioChecks = () => {
 if (sessionStorage.getItem("answers") !== null) {
   answers = JSON.parse(sessionStorage.getItem("answers"));
   resetRadios();
@@ -24,27 +25,7 @@ if (sessionStorage.getItem("checkboxes") !== null) {
     checkbox3: false,
   };
 }
-
-// Displays a hyphen at the appropriate points for the users contact number
-document
-  .getElementById("mce-PHONE")
-  .addEventListener("input", function (event) {
-    // Remove any non-numeric characters
-    let input = event.target.value.replace(/\D/g, "");
-    let formattedInput = "";
-
-    if (input.length > 0) {
-      formattedInput = input.substring(0, 2);
-    }
-    if (input.length >= 3) {
-      formattedInput += "-" + input.substring(2, 5);
-    }
-    if (input.length >= 6) {
-      formattedInput += "-" + input.substring(5, 9);
-    }
-
-    event.target.value = formattedInput;
-  });
+}
 
 // resets the radio buttons to match what is stored
 const resetRadios = () => {
@@ -107,10 +88,33 @@ const checkConditions = () => {
   }
 };
 
+//checks if there is data in session storage
+setRadioChecks();
+
+// Displays a hyphen at the appropriate points for the users contact number
+document
+  .getElementById("mce-PHONE")
+  .addEventListener("input", function (event) {
+    // Remove any non-numeric characters
+    let input = event.target.value.replace(/\D/g, "");
+    let formattedInput = "";
+
+    if (input.length > 0) {
+      formattedInput = input.substring(0, 2);
+    }
+    if (input.length >= 3) {
+      formattedInput += "-" + input.substring(2, 5);
+    }
+    if (input.length >= 6) {
+      formattedInput += "-" + input.substring(5, 9);
+    }
+
+    event.target.value = formattedInput;
+  });
+
 // Restore state when the page loads
 document.addEventListener("DOMContentLoaded", function () {
-  resetRadios();
-  resetChecks();
+  setRadioChecks();
   checkConditions();
   // if (sessionStorage.getItem("submitVisible") === "true") {
   //   document.getElementById("submitButton").style.display = "block";
