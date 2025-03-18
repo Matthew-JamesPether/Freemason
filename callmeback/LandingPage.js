@@ -7,7 +7,20 @@ window.addEventListener("load", () => {
   if (answers != null || checkboxes != null) {
     answers = JSON.parse(sessionStorage.getItem("answers"));
     checkboxes = JSON.parse(sessionStorage.getItem("checkboxes"));
-
+  } else {
+    answers = {
+      question1: "no",
+      question2: "no",
+      question3: "no",
+      question4: "no",
+      question5: "no",
+    };
+    checkboxes = {
+      checkbox1: false,
+      checkbox2: false,
+      checkbox3: false,
+    };
+  }
     // Loop through answers and set radio button selection
     Object.keys(answers).forEach((question) => {
       let selectedValue = answers[question]; // "yes" or "no"
@@ -26,20 +39,7 @@ window.addEventListener("load", () => {
         checkboxElement.checked = isChecked;
       }
     });
-  } else {
-    answers = {
-      question1: "no",
-      question2: "no",
-      question3: "no",
-      question4: "no",
-      question5: "no",
-    };
-    checkboxes = {
-      checkbox1: false,
-      checkbox2: false,
-      checkbox3: false,
-    };
-  }
+
   // Re-render button visibility based on saved state
   checkConditions();
 });
