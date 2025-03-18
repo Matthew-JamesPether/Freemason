@@ -37,7 +37,7 @@ document
 const handleChange = (question, value) => {
   answers[question] = value;
 
-  //sessionStorage.setItem("answers", JSON.stringify(answers));
+  sessionStorage.setItem("answers", JSON.stringify(answers));
   checkConditions();
 };
 
@@ -47,7 +47,7 @@ const handleCheckboxChange = () => {
   checkboxes.checkbox2 = document.getElementById("checkbox2").checked;
   checkboxes.checkbox3 = document.getElementById("checkbox3").checked;
 
-  //sessionStorage.setItem("checkboxes", JSON.stringify(checkboxes));
+  sessionStorage.setItem("checkboxes", JSON.stringify(checkboxes));
   checkConditions();
 };
 
