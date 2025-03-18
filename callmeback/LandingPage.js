@@ -116,10 +116,10 @@ document
 
 // Restore state when the page loads
 document.addEventListener("DOMContentLoaded", function () {
+  if (sessionStorage.getItem("submitVisible") === "true") {
+    document.getElementById("submitButton").style.display = "block";
+  } else {
+    document.getElementById("submitButton").style.display = "none";
+  }
   setRadioChecks();
-   if (sessionStorage.getItem("submitVisible") === "true") {
-     document.getElementById("submitButton").style.display = "block";
-   } else {
-     document.getElementById("submitButton").style.display = "none";
-   }
 });
