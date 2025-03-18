@@ -109,6 +109,8 @@ const checkConditions = () => {
 
 // Restore state when the page loads
 document.addEventListener("DOMContentLoaded", function () {
+  resetRadios();
+  resetChecks();
   // if (sessionStorage.getItem("submitVisible") === "true") {
   //   document.getElementById("submitButton").style.display = "block";
   // } else {
