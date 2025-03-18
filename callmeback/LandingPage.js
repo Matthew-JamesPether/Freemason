@@ -25,6 +25,8 @@ if (sessionStorage.getItem("checkboxes") !== null) {
     checkbox3: false,
   };
 }
+
+checkConditions();
 }
 
 // resets the radio buttons to match what is stored
@@ -39,8 +41,6 @@ const resetRadios = () => {
       radioButton.checked = true;
     }
   });
-
-  checkConditions();
 };
 
 // resets the check boxes to match what is stored
@@ -51,8 +51,6 @@ const resetChecks = () => {
       checkboxElement.checked = isChecked;
     }
   });
-
-  checkConditions();
 };
 
 // Function to handle radio button change
