@@ -1,12 +1,12 @@
 // Declaring variables
-const answers = {
+let answers = {
   question1: "no",
   question2: "no",
   question3: "no",
   question4: "no",
   question5: "no",
 };
-const checkboxes = {
+let checkboxes = {
   checkbox1: false,
   checkbox2: false,
   checkbox3: false,
