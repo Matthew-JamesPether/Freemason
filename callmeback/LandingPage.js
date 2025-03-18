@@ -2,48 +2,6 @@
 let answers = null;
 let checkboxes = null;
 
-// On page load, check sessionStorage for saved state
-window.addEventListener("load", () => {
-  if (answers != null || checkboxes != null) {
-    answers = JSON.parse(sessionStorage.getItem("answers"));
-    checkboxes = JSON.parse(sessionStorage.getItem("checkboxes"));
-  } else {
-    answers = {
-      question1: "no",
-      question2: "no",
-      question3: "no",
-      question4: "no",
-      question5: "no",
-    };
-    checkboxes = {
-      checkbox1: false,
-      checkbox2: false,
-      checkbox3: false,
-    };
-  }
-    // Loop through answers and set radio button selection
-    Object.keys(answers).forEach((question) => {
-      let selectedValue = answers[question]; // "yes" or "no"
-      let radioButton = document.querySelector(
-        `input[name="${question}"][value="${selectedValue}"]`
-      );
-      if (radioButton) {
-        radioButton.checked = true;
-      }
-    });
-
-    // Loop through checkboxes and set their checked state
-    checkboxes.forEach((isChecked, index) => {
-      let checkboxElement = document.getElementById(`checkbox${index + 1}`);
-      if (checkboxElement) {
-        checkboxElement.checked = isChecked;
-      }
-    });
-
-  // Re-render button visibility based on saved state
-  checkConditions();
-});
-
 // Displays a hyphen at the appropriate points for the users contact number
 document
   .getElementById("mce-PHONE")
@@ -111,3 +69,45 @@ const checkConditions = () => {
 //     document.getElementById("submitButton").style.display = "none";
 //   }
 // });
+
+// On page load, check sessionStorage for saved state
+window.addEventListener("load", () => {
+  if (answers != null || checkboxes != null) {
+    answers = JSON.parse(sessionStorage.getItem("answers"));
+    checkboxes = JSON.parse(sessionStorage.getItem("checkboxes"));
+  } else {
+    answers = {
+      question1: "no",
+      question2: "no",
+      question3: "no",
+      question4: "no",
+      question5: "no",
+    };
+    checkboxes = {
+      checkbox1: false,
+      checkbox2: false,
+      checkbox3: false,
+    };
+  }
+    // Loop through answers and set radio button selection
+    Object.keys(answers).forEach((question) => {
+      let selectedValue = answers[question]; // "yes" or "no"
+      let radioButton = document.querySelector(
+        `input[name="${question}"][value="${selectedValue}"]`
+      );
+      if (radioButton) {
+        radioButton.checked = true;
+      }
+    });
+
+    // Loop through checkboxes and set their checked state
+    checkboxes.forEach((isChecked, index) => {
+      let checkboxElement = document.getElementById(`checkbox${index + 1}`);
+      if (checkboxElement) {
+        checkboxElement.checked = isChecked;
+      }
+    });
+
+  // Re-render button visibility based on saved state
+  checkConditions();
+});
