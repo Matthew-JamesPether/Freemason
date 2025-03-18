@@ -1,12 +1,12 @@
 // Declaring variables
- let answers = {
+ const answers = {
        question1: "no",
        question2: "no",
        question3: "no",
        question4: "no",
        question5: "no",
      };
-  let checkboxes = {
+  const checkboxes = {
        checkbox1: false,
        checkbox2: false,
        checkbox3: false,
