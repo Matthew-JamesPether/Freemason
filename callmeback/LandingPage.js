@@ -54,10 +54,10 @@ const checkConditions = () => {
   const submitButton = document.getElementById("submitButton");
   if (!allRadioYes || !allCheckboxChecked) {
     submitButton.style.display = "none";
-    //sessionStorage.removeItem("submitVisible");
+    sessionStorage.removeItem("submitVisible");
   } else {
     submitButton.style.display = "block";
-    //sessionStorage.setItem("submitVisible", "true");
+    sessionStorage.setItem("submitVisible", "true");
   }
 };
 
