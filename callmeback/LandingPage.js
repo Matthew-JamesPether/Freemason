@@ -121,5 +121,5 @@ document.addEventListener("DOMContentLoaded", function () {
   } else {
     document.getElementById("submitButton").style.display = "none";
   }
-  setRadioChecks();
+  //setRadioChecks();
 });
