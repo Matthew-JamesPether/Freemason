@@ -71,7 +71,7 @@ const checkConditions = () => {
 // });
 
 // On page load, check sessionStorage for saved state
-window.addEventListener("load", () => {
+document.addEventListener("DOMContentLoaded", function () {
   if (answers != null || checkboxes != null) {
     answers = JSON.parse(sessionStorage.getItem("answers"));
     checkboxes = JSON.parse(sessionStorage.getItem("checkboxes"));
