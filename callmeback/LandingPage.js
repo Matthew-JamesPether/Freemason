@@ -35,20 +35,7 @@ document
 
 // Function to handle radio button change
 const handleChange = (question, value) => {
-  if (sessionStorage.getItem("answers") !== null) {
-    answers = JSON.parse(sessionStorage.getItem("answers"));
 
-    // Loop through answers and set radio button selection
-    Object.keys(answers).forEach((question) => {
-      let selectedValue = answers[question]; // "yes" or "no"
-      let radioButton = document.querySelector(
-        `input[name="${question}"][value="${selectedValue}"]`
-      );
-      if (radioButton) {
-        radioButton.checked = true;
-      }
-    });
-  }
   answers[question] = value;
   sessionStorage.setItem("answers", JSON.stringify(answers));
   checkConditions();
@@ -56,18 +43,6 @@ const handleChange = (question, value) => {
 
 // Function to handle checkbox change
 const handleCheckboxChange = () => {
-  if (sessionStorage.getItem("checkboxes") !== null) {
-    checkboxes = JSON.parse(sessionStorage.getItem("checkboxes"));
-
-    // Loop through checkboxes and set their checked state
-    checkboxes.forEach((isChecked, index) => {
-      let checkboxElement = document.getElementById(`checkbox${index + 1}`);
-      if (checkboxElement) {
-        checkboxElement.checked = isChecked;
-      }
-    });
-  }
-
   checkboxes.checkbox1 = document.getElementById("checkbox1").checked;
   checkboxes.checkbox2 = document.getElementById("checkbox2").checked;
   checkboxes.checkbox3 = document.getElementById("checkbox3").checked;
@@ -105,6 +80,33 @@ document.addEventListener("DOMContentLoaded", function () {
   } else {
     document.getElementById("submitButton").style.display = "none";
   }
+  if (sessionStorage.getItem("answers") !== null) {
+    answers = JSON.parse(sessionStorage.getItem("answers"));
+
+    // Loop through answers and set radio button selection
+    Object.keys(answers).forEach((question) => {
+      let selectedValue = answers[question]; // "yes" or "no"
+      let radioButton = document.querySelector(
+        `input[name="${question}"][value="${selectedValue}"]`
+      );
+      if (radioButton) {
+        radioButton.checked = true;
+      }
+    });
+  }
+
+  if (sessionStorage.getItem("checkboxes") !== null) {
+    checkboxes = JSON.parse(sessionStorage.getItem("checkboxes"));
+
+    // Loop through checkboxes and set their checked state
+    checkboxes.forEach((isChecked, index) => {
+      let checkboxElement = document.getElementById(`checkbox${index + 1}`);
+      if (checkboxElement) {
+        checkboxElement.checked = isChecked;
+      }
+    });
+  }
+
 });
 
 // On page load, check sessionStorage for saved state
