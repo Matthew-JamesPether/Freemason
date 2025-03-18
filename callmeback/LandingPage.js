@@ -1,23 +1,10 @@
 // Declaring variables
-const answers = {
-  question1: "no",
-  question2: "no",
-  question3: "no",
-  question4: "no",
-  question5: "no",
-};
-const checkboxes = {
-  checkbox1: false,
-  checkbox2: false,
-  checkbox3: false,
-};
+let answers = null;
+let checkboxes = null;
 
 // On page load, check sessionStorage for saved state
 window.addEventListener("load", () => {
-  if (
-    sessionStorage.getItem("answers") &&
-    sessionStorage.getItem("checkboxes")
-  ) {
+  if (answers != null || checkboxes != null) {
     answers = JSON.parse(sessionStorage.getItem("answers"));
     checkboxes = JSON.parse(sessionStorage.getItem("checkboxes"));
 
@@ -39,10 +26,22 @@ window.addEventListener("load", () => {
         checkboxElement.checked = isChecked;
       }
     });
-
-    // Re-render button visibility based on saved state
-    checkConditions();
+  } else {
+    answers = {
+      question1: "no",
+      question2: "no",
+      question3: "no",
+      question4: "no",
+      question5: "no",
+    };
+    checkboxes = {
+      checkbox1: false,
+      checkbox2: false,
+      checkbox3: false,
+    };
   }
+  // Re-render button visibility based on saved state
+  checkConditions();
 });
 
 // Displays a hyphen at the appropriate points for the users contact number
@@ -97,18 +96,18 @@ const checkConditions = () => {
   const submitButton = document.getElementById("submitButton");
   if (!allRadioYes || !allCheckboxChecked) {
     submitButton.style.display = "none";
-    sessionStorage.removeItem("submitVisible");
+    //sessionStorage.removeItem("submitVisible");
   } else {
     submitButton.style.display = "block";
-    sessionStorage.setItem("submitVisible", "true");
+    //sessionStorage.setItem("submitVisible", "true");
   }
 };
 
 // Restore state when the page loads
-document.addEventListener("DOMContentLoaded", function () {
-  if (sessionStorage.getItem("submitVisible") === "true") {
-    document.getElementById("submitButton").style.display = "block";
-  } else {
-    document.getElementById("submitButton").style.display = "none";
-  }
-});
+// document.addEventListener("DOMContentLoaded", function () {
+//   if (sessionStorage.getItem("submitVisible") === "true") {
+//     document.getElementById("submitButton").style.display = "block";
+//   } else {
+//     document.getElementById("submitButton").style.display = "none";
+//   }
+// });
