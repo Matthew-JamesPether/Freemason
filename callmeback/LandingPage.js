@@ -73,13 +73,6 @@ const checkConditions = () => {
 
 // Restore state when the page loads
 document.addEventListener("DOMContentLoaded", function () {
-  if (sessionStorage.getItem("submitVisible") === "true") {
-    document.getElementById("submitButton").style.display = "block";
-    answers = JSON.parse(sessionStorage.getItem("answers"));
-    checkboxes = JSON.parse(sessionStorage.getItem("checkboxes"));
-  } else {
-    document.getElementById("submitButton").style.display = "none";
-  }
   if (sessionStorage.getItem("answers") !== null) {
     answers = JSON.parse(sessionStorage.getItem("answers"));
 
@@ -107,6 +100,13 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
+  if (sessionStorage.getItem("submitVisible") === "true") {
+    document.getElementById("submitButton").style.display = "block";
+    answers = JSON.parse(sessionStorage.getItem("answers"));
+    checkboxes = JSON.parse(sessionStorage.getItem("checkboxes"));
+  } else {
+    document.getElementById("submitButton").style.display = "none";
+  }
 });
 
 // On page load, check sessionStorage for saved state
