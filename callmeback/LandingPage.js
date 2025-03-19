@@ -81,10 +81,8 @@ const checkConditions = () => {
   const submitButton = document.getElementById("submitButton");
   if (!allRadioYes || !allCheckboxChecked) {
     submitButton.style.display = "none";
-    sessionStorage.removeItem("submitVisible");
   } else {
     submitButton.style.display = "block";
-    sessionStorage.setItem("submitVisible", "true");
   }
 };
 
@@ -111,13 +109,3 @@ document
 
     event.target.value = formattedInput;
   });
-
-// Restore state when the page loads
-// document.addEventListener("DOMContentLoaded", function () {
-//    if (sessionStorage.getItem("submitVisible") === "true") {
-//      document.getElementById("submitButton").style.display = "block";
-//    } else {
-//      document.getElementById("submitButton").style.display = "none";
-//    }
-//   // setRadioChecks();
-// });
