@@ -2,30 +2,32 @@
 let answers = null;
 let checkboxes = null;
 
+// Checks if radio buttons and checkboxes are in session storage
 const setRadioChecks = () => {
-if (sessionStorage.getItem("answers") !== null) {
-  answers = JSON.parse(sessionStorage.getItem("answers"));
+  if (sessionStorage.getItem("answers") !== null) {
+    answers = JSON.parse(sessionStorage.getItem("answers"));
+  } else {
+    answers = {
+      question1: null,
+      question2: null,
+      question3: null,
+      question4: null,
+      question5: null,
+    };
+  }
+  if (sessionStorage.getItem("checkboxes") !== null) {
+    checkboxes = JSON.parse(sessionStorage.getItem("checkboxes"));
+  } else {
+    checkboxes = {
+      checkbox1: null,
+      checkbox2: null,
+      checkbox3: null,
+    };
+  }
+  // calls reset methods
   resetRadios();
-} else {
-  answers = {
-    question1: "no",
-    question2: "no",
-    question3: "no",
-    question4: "no",
-    question5: "no",
-  };
-}
-if (sessionStorage.getItem("checkboxes") !== null) {
-  checkboxes = JSON.parse(sessionStorage.getItem("checkboxes"));
   resetChecks();
-} else {
-  checkboxes = {
-    checkbox1: false,
-    checkbox2: false,
-    checkbox3: false,
-  };
-}
-}
+};
 
 // resets the radio buttons to match what is stored
 const resetRadios = () => {
@@ -45,7 +47,7 @@ const resetRadios = () => {
 const resetChecks = () => {
   Object.keys(checkboxes).forEach((isChecked, index) => {
     let checkboxElement = document.getElementById(`checkbox${index + 1}`);
-    if (checkboxElement) {
+    if (checkboxElement && checkboxes[isChecked] != null) {
       checkboxElement.checked = isChecked;
     }
   });
@@ -88,7 +90,7 @@ const checkConditions = () => {
   }
 };
 
-//checks if there is data in session storage
+//Calls method to check session storage
 setRadioChecks();
 
 // Displays a hyphen at the appropriate points for the users contact number
@@ -115,18 +117,18 @@ document
 // Restore state when the page loads
 document.addEventListener("DOMContentLoaded", function () {
   if (sessionStorage.getItem("submitVisible") === "true") {
-    document.getElementById("submitButton").style.display = "block";  
+    document.getElementById("submitButton").style.display = "block";
   } else {
     document.getElementById("submitButton").style.display = "none";
   }
 });
 
-//   const [navEntry] = performance.getEntriesByType("navigation");
-
-//   if (navEntry) {
-//     if (navEntry.type === "reload") {
-//     sessionStorage.clear();
-//     setRadioChecks();
-//   }
-//   setRadioChecks();
-// };
+// Listens to which default buttons the user selects
+const [navEntry] = performance.getEntriesByType("navigation");
+// Checks if user selects the reload button and resets the page
+if (navEntry) {
+  if (navEntry.type === "reload") {
+    sessionStorage.clear();
+    window.location.replace(window.location.href);
+  }
+}
