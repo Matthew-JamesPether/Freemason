@@ -119,13 +119,10 @@ document
 
     event.target.value = formattedInput;
   });
-//window.addEventListener("load", () => {
-  //if (sessionStorage.getItem("submitVisible") === "true") {
-  //   document.getElementById("submitButton").style.display = "block";
- //  } else {
- //    document.getElementById("submitButton").style.display = "none";
-//  }
-//});
+
+window.addEventListener("load", () => {
+checkConditions();
+});
 
 // Restore state when the page loads
 document.addEventListener("DOMContentLoaded", function () {
