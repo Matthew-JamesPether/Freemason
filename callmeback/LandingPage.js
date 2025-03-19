@@ -50,7 +50,7 @@ const resetRadios = () => {
 
 // resets the check boxes to match what is stored
 const resetChecks = () => {
-  checkboxes.forEach((isChecked, index) => {
+  Object.keys(checkboxes).forEach((isChecked, index) => {
     let checkboxElement = document.getElementById(`checkbox${index + 1}`);
     if (checkboxElement) {
       checkboxElement.checked = isChecked;
@@ -120,9 +120,9 @@ document
     event.target.value = formattedInput;
   });
 
-window.addEventListener("load", () => {
-checkConditions();
-});
+// window.addEventListener("load", () => {
+// checkConditions();
+// });
 
 // Restore state when the page loads
 document.addEventListener("DOMContentLoaded", function () {
