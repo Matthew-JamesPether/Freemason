@@ -25,8 +25,6 @@ if (sessionStorage.getItem("checkboxes") !== null) {
     checkbox3: false,
   };
 }
-
-//checkConditions();
 }
 
 // resets the radio buttons to match what is stored
@@ -41,11 +39,6 @@ const resetRadios = () => {
       radioButton.checked = true;
     }
   });
-
-//  Object.keys(answers).forEach((question) => {
-    //let selectedValue = answers[question]; // "yes" or "no"
-   // handleChange(question, selectedValue);
-  //});
 };
 
 // resets the check boxes to match what is stored
@@ -56,7 +49,6 @@ const resetChecks = () => {
       checkboxElement.checked = isChecked;
     }
   });
- // handleCheckboxChange();
 };
 
 // Function to handle radio button change
@@ -120,16 +112,12 @@ document
     event.target.value = formattedInput;
   });
 
-// window.addEventListener("load", () => {
-// checkConditions();
-// });
-
 // Restore state when the page loads
-document.addEventListener("DOMContentLoaded", function () {
-   if (sessionStorage.getItem("submitVisible") === "true") {
-     document.getElementById("submitButton").style.display = "block";
-   } else {
-     document.getElementById("submitButton").style.display = "none";
-   }
-  // setRadioChecks();
-});
+// document.addEventListener("DOMContentLoaded", function () {
+//    if (sessionStorage.getItem("submitVisible") === "true") {
+//      document.getElementById("submitButton").style.display = "block";
+//    } else {
+//      document.getElementById("submitButton").style.display = "none";
+//    }
+//   // setRadioChecks();
+// });
