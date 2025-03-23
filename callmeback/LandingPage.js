@@ -132,3 +132,13 @@ if (navEntry) {
     window.location.replace(window.location.href);
   }
 }
+
+// Listens for submit button
+document
+.getElementById("contactForm")
+.addEventListener("submit", function () {
+
+  // Show the sliding message
+  const slideMessage = document.getElementById("slideMessage");
+  slideMessage.classList.add("active");
+});
