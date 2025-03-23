@@ -141,4 +141,11 @@ document
   // Show the sliding message
   const slideMessage = document.getElementById("slideMessage");
   slideMessage.classList.add("active");
+  sessionStorage.setItem("hasSubmit", true);
 });
+
+// Restarts page after file redirects
+if(sessionStorage.getItem("hasSubmit")){
+  sessionStorage.clear();
+  window.location.replace(window.location.href);
+}
