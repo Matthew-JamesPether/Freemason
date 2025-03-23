@@ -29,7 +29,7 @@ Dim emailErrorBody
         ipAddress = Request.ServerVariables("REMOTE_ADDR") ' Fallback to direct IP
     End If
   
-    If Err.Number <> 0 Then
+    If Err.Number <> 0 Or ipAddress = "" Then
         emailErrorBody = emailErrorBody & "Error retrieving IP Address: " & Err.Description & vbCrLf & vbCrLf
         ipAddress = "Error"
     End If
@@ -37,8 +37,7 @@ Dim emailErrorBody
   
   ' --- Gets Location ---
   On Error Resume Next
-    ' apiUrl = "http://ip-api.com/json/" & ipAddress & "?fields=country"
-    apiUrl = "http://ip-api.com/json/" & "165.73.111.190" & "?fields=country"
+    apiUrl = "http://ip-api.com/json/" & ipAddress & "?fields=country"
     Dim xmlHttp, responseText, jsonResponse
   
     Set xmlHttp = Server.CreateObject("MSXML2.XMLHTTP")
@@ -52,7 +51,7 @@ Dim emailErrorBody
   
     country = Mid(responseText, startPos, endPos - startPos)
   
-    If Err.Number <> 0 Then
+    If Err.Number <> 0 Or country = "" Then
         emailErrorBody = emailErrorBody & "Error retrieving Location: " & Err.Description & vbCrLf & vbCrLf
         country = "Error"
     End If
@@ -104,8 +103,7 @@ Dim emailErrorBody
   objEmail.Configuration.Fields.Update
   
   objEmail.From = "website@westerford.capetown"
-  objEmail.To = "predex9000@gmail.com"
-  'objEmail.To = "sean@twhconsult.co.za, za.marco.petronio@gmail.com"
+  objEmail.To = "sean@twhconsult.co.za, za.marco.petronio@gmail.com"
   objEmail.Subject = "New Applicant About Freemasonry"
   objEmail.TextBody = emailBody
   
