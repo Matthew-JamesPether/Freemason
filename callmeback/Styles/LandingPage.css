@@ -277,9 +277,8 @@ span {
     top: 10px;
     position: relative;
     margin: 0 auto;
-    width: auto;
-    height: auto;
-    padding: 20px 10px;
+    width: 200px;
+    height: 35px;
   }
 
   .slide-message {
