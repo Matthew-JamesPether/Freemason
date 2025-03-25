@@ -102,8 +102,8 @@ Dim emailErrorBody
   objEmail.Configuration.Fields.Item("http://schemas.microsoft.com/cdo/configuration/smtpusessl") = True
   objEmail.Configuration.Fields.Update
   
-  objEmail.From = "website@westerford.capetown"
-  objEmail.To = "sean@twhconsult.co.za, za.marco.petronio@gmail.com"
+  objEmail.From = ""
+  objEmail.To = ""
   objEmail.Subject = "New Applicant About Freemasonry"
   objEmail.TextBody = emailBody
   
@@ -117,7 +117,7 @@ Dim emailErrorBody
   
   On Error Resume Next
     if Not IsNull(emailErrorBody) And emailErrorBody <> "" Then
-       objEmail.To = "mjpether7@gmail.com"
+       objEmail.To = ""
        objEmail.Subject = "New Applicant About Freemasonry ERROR"
        objEmail.TextBody = emailErrorBody
        objEmail.Send
