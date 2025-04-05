@@ -38,7 +38,7 @@ Dim emailErrorBody
   ' --- Gets Location ---
   On Error Resume Next
     apiUrl = "http://ip-api.com/json/" & ipAddress & "?fields=country"
-    Dim xmlHttp, responseText, jsonResponse
+    Dim xmlHttp, responseText
   
     Set xmlHttp = Server.CreateObject("MSXML2.XMLHTTP")
     xmlHttp.Open "GET", apiUrl, False
@@ -55,6 +55,8 @@ Dim emailErrorBody
         emailErrorBody = emailErrorBody & "Error retrieving Location: " & Err.Description & vbCrLf & vbCrLf
         country = "Error"
     End If
+
+    Set xmlHttp = Nothing
   On Error GoTo 0
   
   ' --- Converts checkbox on to yes ---
@@ -114,7 +116,57 @@ Dim emailErrorBody
         emailErrorBody = emailErrorBody & "Error sending email: " & Err.Description & vbCrLf & vbCrLf
     End If
   On Error GoTo 0
-  
+
+  ' --- Stores Data ---
+  On Error Resume Next
+  ' Define file path
+  Dim filePath
+  'filePath = Server.MapPath("data.txt")
+  filePath = Server.MapPath("data.csv")
+
+' --- Create FileSystemObject ---
+  Dim fso, file
+   Set fso = Server.CreateObject("Scripting.FileSystemObject")
+
+' --- Check if the file exists, if not, create it ---
+  If Not fso.FileExists(filePath) Then
+    Set file = fso.CreateTextFile(filePath, True)
+   Else
+    Set file = fso.OpenTextFile(filePath, 8, True) ' 8 = Append mode
+  End If
+
+ ' --- Write data to the file ---
+ If Not file Is Nothing Then
+  '  file.WriteLine "Name: " & name
+  '  file.WriteLine "Email: " & email
+  '   file.WriteLine "Phone: " & phone
+  '   file.WriteLine "Question 1: " & question1
+  '   file.WriteLine "Question 2: " & question2
+  '   file.WriteLine "Question 3: " & question3
+  '   file.WriteLine "Question 4: " & question4
+  '   file.WriteLine "Question 5: " & question5
+  '   file.WriteLine "Ques One: " & quesOne
+  '   file.WriteLine "Ques Two: " & quesTwo
+  '   file.WriteLine "Is Employed: " & isEmployed
+  '   file.WriteLine "Acknowledges Responsibility: " & acknowledgesResponsibility
+  '   file.WriteLine "Has Consented: " & hasConsented
+  '   file.WriteLine "IP Address: " & ipAddress
+  '   file.WriteLine "Country: " & country
+  '   file.WriteLine "----------------------------"
+    file.WriteLine name & "," & email & "," & phone & "," & question1 & "," & question2 & "," & question3 & "," & question4 & "," & question5 & "," & quesOne & "," & quesTwo & "," & isEmployed & "," & acknowledgesResponsibility & "," & hasConsented & "," & ipAddress & "," & country
+    file.Close
+  End If
+
+' --- Clean Up ---
+  Set file = Nothing
+  Set fso = Nothing
+
+    If Err.Number <> 0 Then
+        Response.Redirect "Error downloading data: " & Err & vbCrLf & vbCrLf
+    End If
+  On Error GoTo 0
+
+  ' --- Sends Errors ---
   On Error Resume Next
     if Not IsNull(emailErrorBody) And emailErrorBody <> "" Then
        objEmail.To = ""
@@ -124,11 +176,8 @@ Dim emailErrorBody
     End If
   On Error GoTo 0
 
-  Response.Redirect "/callmeback/" 
-
-' Clean Up
+' --- Clean Up ---
 Set objEmail = Nothing
-Set xmlHttp = Nothing
-Set jsonResponse = Nothing
-Set jsonObj = Nothing
+
+Response.Redirect "/callmeback/" 
 %>
